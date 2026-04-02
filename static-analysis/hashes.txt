@@ -1,0 +1,19 @@
+# WannaCry Sample — Cryptographic Hashes
+# File: wcry.exe (WannaCry launcher)
+# Tool: CertUtil (Windows built-in)
+
+MD5:    db349b97c37d22f5ea1d1841e3c89eb4
+SHA1:   e889544aff85ffaf8b0d0da705105dee7c97fe26
+SHA256: 24d004a104d4d54034dbcffc2a4b19a11f39008a575aa614ea04703480b1022c
+
+# VirusTotal cross-reference (historical):
+# Detection rate: 67/70 engines at time of outbreak
+# Common AV names: Ransom.WannaCry, WannaCrypt, Trojan.GenericKD
+# Reference: https://www.virustotal.com/gui/file/24d004a104d4d54034dbcffc2a4b19a11f39008a575aa614ea04703480b1022c
+
+# Notes:
+# Hash confirmed against known WannaCry sample database entries.
+# Sample integrity verified — hashes match expected values for May 2017 outbreak binary.
+```
+
+---
