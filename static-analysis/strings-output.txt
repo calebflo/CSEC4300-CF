@@ -1,0 +1,43 @@
+# WannaCry Key Strings - Static Analysis Documentation
+# Tool: PEStudio and Sysinternals strings.exe
+# File: wcry.exe
+
+# KILL SWITCH DOMAIN (IOC)
+# www.iuqerfsodp9ifjaposdfjhgosurijfaejfsdfhgosurijfaejfsdfhgosurijf.com
+# HTTP GET sent to this URL before payload executes
+# If it resolves malware exits. If not malware continues.
+# Marcus Hutchins registered this domain on May 12 2017 to halt the outbreak.
+
+# IDENTITY STRINGS
+# WanaCrypt0r - malware family name
+# WANACRY! - magic header written into every encrypted file
+# .WNCRY - extension appended to all encrypted files
+# WNcry@2ol7 - password for the ZIP archive embedded in the .rsrc section
+
+# ANTI-RECOVERY COMMANDS FOUND IN BINARY
+# vssadmin delete shadows /all /quiet - destroys all Volume Shadow Copies
+# bcdedit /set {default} recoveryenabled No - disables Windows recovery
+# bcdedit /set {default} bootstatuspolicy ignoreallfailures
+# icacls . /grant Everyone:F /T /C /Q - grants full file permissions
+# attrib +h . - hides working directory
+
+# DROPPED FILE AND SERVICE NAMES
+# tasksche.exe - ransomware encryption payload
+# mssecsvc2.0 - Windows service name used for persistence
+# Microsoft Security Center (2.0) Service - deceptive service display name
+# @WanaDecryptor@.exe - ransom note GUI binary
+# @Please_Read_Me@.txt - text format ransom note
+# taskhsvc.exe - bundled Tor client for C2 communications
+
+# TOR AND NETWORK
+# .onion - Tor hidden service addresses used for C2
+
+# BITCOIN WALLET ADDRESSES (IOC only - for detection and blocking)
+# IOC: 13AM4VW2dhxYgXeQepoHkHSQuy6NgaEb94
+# IOC: 12t9YDPgwueZ9NyMgw519p7AA8isjr6SMw
+# IOC: 115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn
+
+# MUTEX
+# Global\MsWinZonesCacheCounterMutexA
+# WannaCry creates this to prevent multiple instances
+# Its presence on a system is a definitive behavioral IOC

@@ -1,0 +1,51 @@
+# WannaCry Import Table Analysis
+# Tool: PEStudio
+# File: wcry.exe
+
+WININET.DLL
+InternetOpenA         Opens internet session handle
+InternetOpenUrlA      CRITICAL - HTTP GET request to kill switch domain
+InternetCloseHandle   Closes handle after kill switch check completes
+
+ADVAPI32.DLL Cryptography
+CryptAcquireContextA  Acquires Windows CryptoAPI provider handle
+CryptImportKey        CRITICAL - Imports attacker RSA-2048 public key from r.wry
+CryptGenKey           CRITICAL - Generates unique AES-128 key per file
+CryptEncrypt          CRITICAL - Performs AES-128 encryption on file content
+CryptDestroyKey       Clears key material from memory after each file
+CryptReleaseContext   Releases CryptoAPI context when done
+
+ADVAPI32.DLL Services and Registry
+OpenSCManagerA        Opens the Windows Service Control Manager
+CreateServiceA        HIGH - Registers malware as a Windows service
+StartServiceA         Immediately starts the registered service
+RegSetValueExA        Writes WanaCrypt0r configuration keys to registry
+
+KERNEL32.DLL File Operations
+FindFirstFileW        CRITICAL - Begins file enumeration loop
+FindNextFileW         CRITICAL - Advances to next file in enumeration
+FindClose             Closes the file enumeration handle
+CreateFileW           Creates encrypted output files on disk
+ReadFile              Reads plaintext file content into memory
+WriteFile             Writes encrypted content and dropped payloads
+DeleteFileW           Deletes original plaintext files after encryption
+MoveFileExW           Renames files to apply the encrypted extension
+
+KERNEL32.DLL Process and Memory
+VirtualAlloc          HIGH - Allocates RWX memory for runtime unpacking
+CreateProcessA        Spawns child processes including the payload
+ExitProcess           Called when kill switch triggers successfully
+
+WS2_32.DLL Network
+socket                Creates TCP sockets for port scanning
+connect               Attempts connection to target port
+send recv             Sends and receives exploit data
+WSAStartup            Initializes Windows Sockets API
+
+CAPABILITY SUMMARY
+Kill switch check:    InternetOpenUrlA
+File encryption:      CryptImportKey plus CryptGenKey plus CryptEncrypt
+Persistence service:  CreateServiceA plus StartServiceA
+File enumeration:     FindFirstFileW plus FindNextFileW
+Runtime unpacking:    VirtualAlloc with RWX permissions
+Worm propagation:     socket plus connect plus send targeting port 445
