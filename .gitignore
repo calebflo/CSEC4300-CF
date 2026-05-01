@@ -1,39 +1,24 @@
-# CRITICAL: Malware binaries must NEVER be committed to this repository.
-
-# Malware Binaries
-*.exe
+﻿*.exe
 *.dll
 *.sys
 *.bin
 *.wry
 *.WNCRY
 *.wncry
-
-# Archives
 *.zip
 *.7z
 *.rar
 *.tar
 *.gz
-
-# Analysis tool outputs
 *.pcap
 *.pcapng
-*.cap
 *.pml
 *.pmf
-
-# OS artifacts
 .DS_Store
 Thumbs.db
 desktop.ini
 *.swp
 *~
-
-# Allow documentation
 !*.md
 !*.txt
 !*.asm
-```
-
----
