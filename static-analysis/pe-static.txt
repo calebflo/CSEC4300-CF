@@ -1,0 +1,32 @@
+# WannaCry PE Header and Section Analysis
+# Tool: CFF Explorer and PEStudio
+# File: wcry.exe
+
+FILE PROPERTIES
+File Type:             PE32 Executable Windows GUI
+Architecture:          x86 32-bit
+Compilation Timestamp: 0x5901B878 April 26 2017 may be forged
+Entry Point RVA:       0x00409824
+Image Base:            0x00400000
+File Size:             approximately 3.34 MB
+
+PE SECTIONS
+Section   Entropy   Notes
+.text     6.0       Code section normal range
+.rdata    5.1       Imports strings read-only data
+.data     4.8       Initialized data
+.rsrc     7.9 HIGH  ENCRYPTED PAYLOAD embedded here
+
+ENTROPY ANALYSIS
+Entropy scale is 0.0 meaning uniform to 8.0 meaning maximum randomness.
+Encrypted or compressed data typically scores above 7.5.
+The .rsrc section at 7.9 strongly indicates an encrypted payload.
+
+WannaCry embeds a password-protected ZIP in the .rsrc section containing:
+  tasksche.exe          the ransomware encryption payload
+  taskhsvc.exe          the bundled Tor client
+  @WanaDecryptor@.exe   the ransom note GUI
+  r.wry s.wry t.wry     key and configuration files
+
+The ZIP password WNcry@2ol7 was found during strings analysis.
+All components were confirmed extracted to disk during Phase 4 dynamic analysis.
