@@ -30,30 +30,55 @@ WannaCry is significant because it combined:
 ## Repository Structure
 wannacry-analysis/
 ├── README.md
+
 ├── .gitignore
+
 ├── static-analysis/
+
 │   ├── hashes.txt
+
 │   ├── strings-output.txt
+
 │   ├── pe-sections.txt
+
 │   └── imports.txt
+
 ├── assembly-analysis/
+
 │   ├── kill-switch-region.asm
+
 │   ├── encryption-loop-region.asm
+
 │   └── unpacking-stub.asm
+
 ├── dynamic-analysis/
+
 │   ├── procmon-findings.md
+
 │   ├── network-observations.md
+
 │   ├── registry-changes.md
+
 │   └── memory-analysis.md
+
 ├── reports/
+
 │   └── ioc-list.md
+
 ├── tools/
+
 │   └── tool-list.md
+
 └── screenshots/
+
 ├── phase1/
+
 ├── phase2/
+
 ├── phase3/
+
 ├── phase4/
+
 └── phase5/
 ---
 
